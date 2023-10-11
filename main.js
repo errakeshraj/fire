@@ -1,6 +1,21 @@
 // Modules
+import { signin } from "./modules/firebase";
 
-// selectors
+// Selectors
+const loginForm = document.querySelector("#login-form");
 
+// Functions
+loginForm.onsubmit = async(e) => {
+    e.preventDefault();
+    const user = {
+        email: e.target[0].value.trim(),
+        password: e.target[1].value.trim()
+    };
 
-/// functions
+    try {
+        const res = await signin(user);
+        console.log(res);
+    } catch (error) {
+        console.error(error);
+    }
+};
